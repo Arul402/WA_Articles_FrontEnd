@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar_Katturai from "../Navbars/Navbar_Katturai";
+import Loader from "../Loader/Loader";
 
 function Tags() {
   const [tagNames, setTagNames] = useState([]);
@@ -49,7 +50,7 @@ function Tags() {
         {/* <h2 className="text-2xl font-bold text-gray-800 mb-4">Tags</h2> */}
 
         {isLoading ? (
-          <p className="text-gray-600">Loading...</p>
+          <Loader/>
         ) : (
           <div className="flex flex-wrap justify-center gap-3">
             {tagNames.length > 0 ? (

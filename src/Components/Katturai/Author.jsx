@@ -187,8 +187,8 @@ function Author() {
     {isLoading ? <Loader /> : ""}
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" ref={containerRef}>
   {filteredData.map((author) => (
-    <div
-      key={author.id}
+    <Link to={`/authors/${author.author_id}`}
+      key={author.author_id}
       className="author-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 w-64 mx-auto"
     >
       <div 
@@ -215,7 +215,7 @@ function Author() {
           <p className="text-gray-700 text-sm">{author.author_designation}</p>
         </div>
       </div>
-    </div>
+    </Link>
   ))}
 </div>
 </main>

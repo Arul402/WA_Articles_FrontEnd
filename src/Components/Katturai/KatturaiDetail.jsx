@@ -773,8 +773,9 @@ const ArticleDetails = ({ article }) => {
 
   const handleLike = async () => {
     if (isClickedDislike || article.disliked) {
-      alert("Dislike Is Already Clicked !!!");
-      return;
+      // alert("Dislike Is Already Clicked !!!");
+      setIsClickedDislike(false)
+      // return;
     }
 
     const newLikeState = !isClickedLike; // Toggle the like state
@@ -806,8 +807,9 @@ const ArticleDetails = ({ article }) => {
 
   const handleDislike = async () => {
     if (isClickedLike || article.liked) {
-      alert("Like Is Already Clicked !!!");
-      return;
+      // alert("Like Is Already Clicked !!!");
+      // return;
+      setIsClickedLike(false)
     }
 
     const newDislikeState = !isClickedDislike; // Toggle dislike state
@@ -1036,7 +1038,7 @@ const ArticleDetails = ({ article }) => {
                   size={24}
                 />
               )}
-              <h1>&nbsp; {likes}</h1>
+              <h1>&nbsp; {articleData.likes}</h1>
             </span>
             <span className="flex items-center text-gray-700">
               {isClickedDislike ? (
@@ -1052,7 +1054,7 @@ const ArticleDetails = ({ article }) => {
                   size={24}
                 />
               )}
-              <h1>&nbsp; {dislikes}</h1>
+              <h1>&nbsp; {articleData.dislikes}</h1>
             </span>
             <div ref={ref}>
             <span className="flex items-center text-gray-700">
@@ -1182,10 +1184,12 @@ const Katturai_Details = () => {
       try {
         const response = await axios.get(`http://localhost:5000/api/katturai/getsinglekatturai/${id}`);
         setArticleData(response.data);
-        if (!hasViewedUpdated.current) {
-          await axios.put(`http://localhost:5000/api/katturai/${id}/view`);
-          hasViewedUpdated.current = true; // Set flag to prevent duplicate calls
-        }
+        // const viewedKey = `viewed_${id}`;
+        // if (!localStorage.getItem(viewedKey)) {
+        //   await axios.put(`http://localhost:5000/api/katturai/${id}/view`);
+        //   hasViewedUpdated.current = true; // Set flag to prevent duplicate calls
+        //   localStorage.setItem(viewedKey, "true");
+        // }
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error.message);
@@ -1195,6 +1199,19 @@ const Katturai_Details = () => {
     };
     fetchData();
   }, [id]);
+  useEffect(() => {
+    const viewedKey = `viewed_${id}`; // Unique key per article
+
+    if (!sessionStorage.getItem(viewedKey)) {
+      axios.put(`http://localhost:5000/api/katturai/${id}/view`)
+        .then(() => {
+          sessionStorage.setItem(viewedKey, "true"); // Store viewed status
+          hasViewedUpdated.current = true;
+        })
+        .catch((error) => console.error("Error updating view:", error));
+    }
+  }, [id]);
+
 
   return (
     <>

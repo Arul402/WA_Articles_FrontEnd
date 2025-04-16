@@ -14,6 +14,9 @@ import AddCategory from "./Components/Admin/AddCategory"
 import Category from "./Components/Katturai/Category"
 import Tags from "./Components/Katturai/Tags"
 import { SearchProvider } from "./Components/Katturai/SearchContext"
+import TagNamesDetail from "./Components/Katturai/TagNamesDetail"
+import CategoryDetail from "./Components/Katturai/CategoryDetail"
+import AuthorDetail from "./Components/Katturai/AuthorDetail"
 
 function App() {
 
@@ -26,11 +29,14 @@ function App() {
         <Route path="/home" element={<Katturai />} />
         <Route path="/katturai-details/:id" element={<KatturaiDetail />} />
         <Route path="/authors" element={<Author />} />
+        <Route path="/authors/:id" element={<AuthorDetail />} />
         <Route path="/new" element={<Newkatturai />} />
         <Route path="/trending" element={<Trending />} />
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/categories" element={<Category />} />
+        <Route path="/categories/:id" element={<CategoryDetail />} />
         <Route path="/tags" element={<Tags />} />
+        <Route path="/tags/:tagNames" element={<TagNamesDetail />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/addkatturai" element={<AddKatturai />} />
         <Route path="/addkatturaidetail" element={<AddKatturaiDetail />} />

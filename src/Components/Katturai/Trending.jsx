@@ -50,9 +50,9 @@ useEffect(() => {
       try {
         const response = await axios.get("http://localhost:5000/api/katturai/gettrendingKatturai/");
         
-        if (response.data?.sortedKatturaiList && response.data.sortedKatturaiList.length > 0) {
-          setData(response.data.sortedKatturaiList);
-          setFilteredData(response.data.sortedKatturaiList);
+        if (response.data?.katturaiListWithScore && response.data.katturaiListWithScore.length > 0) {
+          setData(response.data.katturaiListWithScore);
+          setFilteredData(response.data.katturaiListWithScore);
         }
 
         if (response.data?.kattScore && response.data.kattScore.length > 0) {
@@ -219,7 +219,7 @@ useEffect(() => {
         <div className="relative group w-full h-48 overflow-hidden rounded-lg">
           {/* Image with smooth darkening effect */}
           <img
-            src={`http://localhost:5000/${article.image_url}`}
+            src={`http://localhost:5000${article.image_url}`}
             alt={article.title}
             className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:brightness-50"
           />
@@ -229,7 +229,7 @@ useEffect(() => {
               {article.title}
             </h3>
             <h3 className="text-white font-bold text-lg px-4 py-2 bg-opacity-60 rounded-lg transform scale-90 group-hover:scale-100 absolute top-2 right-2 text-right">
-              {article.actual_score}
+              {article.Updated_Score}
             </h3>
           </div>
         </div>
