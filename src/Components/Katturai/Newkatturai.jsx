@@ -6,6 +6,7 @@ import axios from "axios";
 import { motion,AnimatePresence  } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import Loader from "../Loader/Loader";
+import { url } from "../../Functions/config";
 
 const Newkatturai = () => {
   const [activeLink, setActiveLink] = useState("");
@@ -22,7 +23,7 @@ const Newkatturai = () => {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const response = await axios.get("http://localhost:5000/api/katturai/getnewkatturai/");
+        const response = await axios.get(`${url.config2}/api/katturai/getnewkatturai/`);
         setData(response.data.latestKatturai);
         setFilteredData(response.data.latestKatturai);
         console.log(response.data.latestKatturai)
@@ -223,7 +224,7 @@ const Newkatturai = () => {
                 <div className="relative group w-full h-48 overflow-hidden rounded-lg">
   {/* Image with smooth darkening effect */}
   <img
-    src={`http://localhost:5000${article.image_url}`}
+    src={`${url.config2}${article.image_url}`}
     alt={article.title}
     className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:brightness-50"
   />

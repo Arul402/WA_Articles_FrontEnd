@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Loader from "../Loader/Loader";
 import NavBar_Admin from "../Navbars/NavBar_Admin";
+import { url } from "../../Functions/config";
 
 export default function AddCategory() {
   const [category, setCategory] = useState({
@@ -29,7 +30,7 @@ export default function AddCategory() {
     formData.append("cat_img", category.cat_img);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/admin/createcategory/", formData, {
+      const response = await axios.post(`${url.config2}/api/admin/createcategory/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

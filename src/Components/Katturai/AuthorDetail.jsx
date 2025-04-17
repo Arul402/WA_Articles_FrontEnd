@@ -9,6 +9,7 @@ import { FaBookOpen, FaTrophy } from "react-icons/fa";
 import Navbar_Katturai from "../Navbars/Navbar_Katturai";
 import { SearchContext } from "./SearchContext";
 import { toast, ToastContainer, Zoom } from "react-toastify";
+import { url } from "../../Functions/config";
 
 const AuthorDetail = () => {
   const [activeLink, setActiveLink] = useState("");
@@ -49,7 +50,7 @@ useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/api/katturai/getauthor/${id}`);
+        const response = await axios.get(`${url.config2}/api/katturai/getauthor/${id}`);
         
         setData(response.data);
         setFilteredData(response.data);
@@ -116,7 +117,7 @@ useEffect(() => {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/search?q=${searchQuery}`
+            `${url.config2}/api/search?q=${searchQuery}`
           );
           setSearchFilteredData(response.data.results || []);
 
@@ -227,7 +228,7 @@ useEffect(() => {
         <div className="relative group w-full h-48 overflow-hidden rounded-lg">
           {/* Image with smooth darkening effect */}
           <img
-            src={`http://localhost:5000/${article.image_url}`}
+            src={`${url.config2}/${article.image_url}`}
             alt={article.title}
             className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:brightness-50"
           />
@@ -260,7 +261,7 @@ useEffect(() => {
         <div className="relative group w-full h-48 overflow-hidden rounded-lg">
           {/* Image with smooth darkening effect */}
           <img
-            src={`http://localhost:5000${article.image_url}`}
+            src={`${url.config2}${article.image_url}`}
             alt={article.title}
             className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:brightness-50"
           />

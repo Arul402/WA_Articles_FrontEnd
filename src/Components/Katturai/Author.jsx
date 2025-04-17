@@ -6,6 +6,7 @@ import { IoCloseSharp, IoMenu, IoSearch } from "react-icons/io5";
 import { useMediaQuery } from 'react-responsive';
 import { motion,AnimatePresence  } from "framer-motion";
 import Loader from '../Loader/Loader';
+import { url } from '../../Functions/config';
 
 function Author() {
   const [data, setData] = useState([]);
@@ -23,7 +24,7 @@ function Author() {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const response = await axios.get("http://localhost:5000/api/katturai/getallauthor/");
+        const response = await axios.get(`${url.config2}/api/katturai/getallauthor/`);
         setData(response.data);
         // setFilteredData(response.data);
         // setIsLoading(false)

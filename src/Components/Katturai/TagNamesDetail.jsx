@@ -4,6 +4,7 @@ import { toast, ToastContainer, Zoom } from 'react-toastify';
 import Loader from '../Loader/Loader';
 import Navbar_Katturai from '../Navbars/Navbar_Katturai';
 import axios from 'axios';
+import { url } from '../../Functions/config';
 
 function TagNamesDetail() {
     const {tagNames}=useParams()
@@ -30,7 +31,7 @@ function TagNamesDetail() {
           const fetchData = async () => {
             try {
               const response = await axios.get(
-                `http://localhost:5000/api/search?q=${tagNames}`
+                `${url.config2}/api/search?q=${tagNames}`
               );
               setQuery(response.data.results || []);
     
@@ -139,7 +140,7 @@ function TagNamesDetail() {
         <div className="relative group w-full h-48 overflow-hidden rounded-lg">
           {/* Image with smooth darkening effect */}
           <img
-            src={`http://localhost:5000/${article.image_url}`}
+            src={`${url.config2}${article.image_url}`}
             alt={article.title}
             className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:brightness-50"
           />

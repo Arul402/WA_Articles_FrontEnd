@@ -8,6 +8,7 @@ import Loader from "../Loader/Loader";
 import Navbar_Katturai from "../Navbars/Navbar_Katturai";
 import { ToastContainer, Zoom, toast } from "react-toastify";
 import { SearchContext } from "./SearchContext";
+import { url } from "../../Functions/config";
 
 const Katturai = () => {
   const [activeLink, setActiveLink] = useState("");
@@ -28,7 +29,7 @@ const Katturai = () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/katturai/getkatturai/"
+          `${url.config2}/api/katturai/getkatturai/`
         );
         setData(response.data);
         setFilteredData(response.data);
@@ -75,7 +76,7 @@ const Katturai = () => {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/search?q=${searchQuery}`
+            `${url.config2}/api/search?q=${searchQuery}`
           );
           setSearchFilteredData(response.data.results || []);
 
@@ -241,7 +242,7 @@ const Katturai = () => {
         <div className="relative group w-full h-48 overflow-hidden rounded-lg">
           {/* Image with smooth darkening effect */}
           <img
-            src={`http://localhost:5000${article.image_url}`}
+            src={`${url.config2}${article.image_url}`}
             alt={article.title}
             className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:brightness-50"
           />
@@ -274,7 +275,7 @@ const Katturai = () => {
         <div className="relative group w-full h-48 overflow-hidden rounded-lg">
           {/* Image with smooth darkening effect */}
           <img
-            src={`http://localhost:5000${article.image_url}`}
+            src={`${url.config2}${article.image_url}`}
             alt={article.title}
             className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:brightness-50"
           />

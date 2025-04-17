@@ -3,6 +3,7 @@ import axios from "axios";
 import { ToastContainer, Zoom, toast } from "react-toastify";
 import Loader from "../Loader/Loader";
 import NavBar_Admin from "../Navbars/NavBar_Admin";
+import { url } from "../../Functions/config";
 
 function AddKatturai() {
   const [formData, setFormData] = useState({
@@ -67,7 +68,7 @@ function AddKatturai() {
     try {
       setIsLoading(true)
       const response = await axios.post(
-        "http://localhost:5000/api/admin/create/",
+        `${url.config2}/api/admin/create/`,
         formDataToSend,
         {
           // headers: { "Content-Type": "multipart/form-data" },

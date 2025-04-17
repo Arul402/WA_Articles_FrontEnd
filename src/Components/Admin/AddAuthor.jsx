@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Loader from "../Loader/Loader";
 import NavBar_Admin from "../Navbars/NavBar_Admin";
+import { url } from "../../Functions/config";
 
 export default function AddAuthor() {
   const [author, setAuthor] = useState({
@@ -32,7 +33,7 @@ export default function AddAuthor() {
     formData.append("author_image", author.author_image);
   
     try {
-      const response = await axios.post("http://localhost:5000/api/admin/createauthor/", formData, {
+      const response = await axios.post(`${url.config2}/api/admin/createauthor/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

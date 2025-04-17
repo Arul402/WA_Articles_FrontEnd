@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar_Katturai from "../Navbars/Navbar_Katturai";
 import Loader from "../Loader/Loader";
+import { url } from "../../Functions/config";
 
 function Tags() {
   const [tagNames, setTagNames] = useState([]);
@@ -13,7 +14,7 @@ function Tags() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("http://localhost:5000/api/katturai/getalltagnames/");
+        const response = await axios.get(`${url.config2}/api/katturai/getalltagnames/`);
         
         let tags = response.data;
 

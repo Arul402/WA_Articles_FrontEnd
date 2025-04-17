@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Loader from "../Loader/Loader";
 import NavBar_Admin from "../Navbars/NavBar_Admin";
+import { url } from "../../Functions/config";
 
 const AddKatturaiDetail = () => {
   const [formData, setFormData] = useState({
@@ -242,7 +243,7 @@ const AddKatturaiDetail = () => {
   
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/admin/kattdetailcreate/${formData.id}/`,
+        `${url.config2}/api/admin/kattdetailcreate/${formData.id}/`,
         formDataToSend,
         {
           headers: {

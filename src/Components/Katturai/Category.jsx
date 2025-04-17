@@ -6,6 +6,7 @@ import { IoCloseSharp, IoMenu, IoSearch } from "react-icons/io5";
 import { useMediaQuery } from 'react-responsive';
 import { motion,AnimatePresence  } from "framer-motion";
 import Loader from '../Loader/Loader';
+import { url } from '../../Functions/config';
 
 function Category() {
   const [data, setData] = useState([]);
@@ -23,7 +24,7 @@ function Category() {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const response = await axios.get("http://localhost:5000/api/katturai/getallcategory/");
+        const response = await axios.get(`${url.config2}/api/katturai/getallcategory/`);
         setData(response.data);
         // setFilteredData(response.data);
         // setIsLoading(false)
@@ -196,7 +197,7 @@ function Category() {
         {/* Author Image Section */}
         <div className="relative group w-full h-40 overflow-hidden rounded-t-lg">
           <img
-            src={`http://localhost:5000${category.cat_img}`}
+            src={`${url.config2}${category.cat_img}`}
             alt={category.cat_name}
             className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:brightness-75"
           />

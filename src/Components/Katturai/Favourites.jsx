@@ -6,6 +6,7 @@ import axios from "axios";
 import { motion,AnimatePresence  } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import Loader from "../Loader/Loader";
+import { url } from "../../Functions/config";
 
 const Favourites = () => {
   const [activeLink, setActiveLink] = useState("");
@@ -23,7 +24,7 @@ const Favourites = () => {
       setIsLoading(true);
       try {
         // Fetch all articles from the backend
-        const response = await axios.get("http://localhost:5000/api/katturai/getalltoggle/");
+        const response = await axios.get(`${url.config2}/api/katturai/getalltoggle/`);
 
         // Get liked article IDs from localStorage
         // const likedArticleIds = JSON.parse(localStorage.getItem("likedArticles")) || [];
@@ -229,7 +230,7 @@ const Favourites = () => {
                 <div className="relative group w-full h-48 overflow-hidden rounded-lg">
   {/* Image with smooth darkening effect */}
   <img
-    src={`http://localhost:5000${article.image_url}`}
+    src={`${url.config2}${article.image_url}`}
     alt={article.title}
     className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:brightness-50"
   />

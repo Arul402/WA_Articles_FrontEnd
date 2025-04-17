@@ -685,6 +685,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import { ToastContainer, Zoom, toast } from "react-toastify";
 import { motion, AnimatePresence } from "framer-motion";
+import { url } from "../../Functions/config";
 
 const ArticleDetails = ({ article }) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -749,7 +750,7 @@ const ArticleDetails = ({ article }) => {
   const fetchData = async () => {
     // setIsLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/api/katturai/getsinglekatturai/${article.id}`);
+      const response = await axios.get(`${url.config2}/api/katturai/getsinglekatturai/${article.id}`);
       setArticleData(response.data);
 
       let tags = response.data.tag_names;
@@ -784,8 +785,8 @@ const ArticleDetails = ({ article }) => {
 
     try {
       const endpoint = newLikeState
-        ? `http://localhost:5000/api/katturai/${article.id}/likeincrease`
-        : `http://localhost:5000/api/katturai/${article.id}/likedecrease`;
+        ? `${url.config2}/api/katturai/${article.id}/likeincrease`
+        : `${url.config2}/api/katturai/${article.id}/likedecrease`;
 
       const { data } = await axios.put(endpoint);
 
@@ -818,8 +819,8 @@ const ArticleDetails = ({ article }) => {
 
     try {
       const endpoint = newDislikeState
-        ? `http://localhost:5000/api/katturai/${article.id}/dislikeincrease`
-        : `http://localhost:5000/api/katturai/${article.id}/dislikedecrease`;
+        ? `${url.config2}/api/katturai/${article.id}/dislikeincrease`
+        : `${url.config2}/api/katturai/${article.id}/dislikedecrease`;
 
       const { data } = await axios.put(endpoint);
 
@@ -840,7 +841,7 @@ const ArticleDetails = ({ article }) => {
   };
 
     useEffect(() => {
-    axios.get(`http://localhost:5000/api/katturai/${article.id}/gettoggle`)
+    axios.get(`${url.config2}/api/katturai/${article.id}/gettoggle`)
       .then((res) => {
         setLikedArticles(res.data.isFavorite);
         console.log(res.data.isFavorite)
@@ -852,7 +853,7 @@ const ArticleDetails = ({ article }) => {
 
   const handleClick = async () => {
     try {
-      const res = await axios.post(`http://localhost:5000/api/katturai/${article.id}/toggle`);
+      const res = await axios.post(`${url.config2}/api/katturai/${article.id}/toggle`);
       setLikedArticles(res.data.isFavorite);
       if (res.data.isFavorite) {
         toast.success("Added to Favorites successfully!", {
@@ -954,7 +955,7 @@ const ArticleDetails = ({ article }) => {
           <div className="banner-section">
             {article.base_url && (
               <img
-                src={`http://localhost:5000/${article.base_url}`}
+                src={`${url.config2}/${article.base_url}`}
                 alt={article.title}
                 className="w-full sm:w-3/4 md:w-1/2 lg:w-3/4 h-48 sm:h-56 md:h-64 object-cover rounded-lg shadow-md mx-auto"
               />
@@ -962,7 +963,7 @@ const ArticleDetails = ({ article }) => {
             <div className="mt-4 text-gray-700 flex items-center justify-evenly gap-4">
               {article.author_image && (
                 <img
-                  src={`http://localhost:5000${article.author_image}`}
+                  src={`${url.config2}${article.author_image}`}
                   className="w-12 h-12 object-cover rounded-lg shadow-md"
                   alt="Author"
                 />
@@ -998,7 +999,7 @@ const ArticleDetails = ({ article }) => {
                 )}
                 {section.cont_img_url && (
                   <img
-                    src={`http://localhost:5000/${section.cont_img_url}`}
+                    src={`${url.config2}/${section.cont_img_url}`}
                     alt={section.img_desc || "Article Image"}
                     className="w-full sm:w-3/4 md:w-1/2 lg:w-1/3 h-48 sm:h-56 md:h-64 object-cover rounded-lg shadow-md mb-4 mx-auto"
                   />
@@ -1148,7 +1149,7 @@ const ArticleDetails = ({ article }) => {
                   <Link to={`/katturai-details/${related.id}`} className="bg-white rounded-lg shadow-md overflow-hidden">
                     {related.img_url && (
                       <img
-                        src={`http://localhost:5000/${related.img_url}`}
+                        src={`${url.config2}/${related.img_url}`}
                         alt={related.title}
                         className="w-full h-48 object-cover"
                       />
@@ -1182,7 +1183,7 @@ const Katturai_Details = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/api/katturai/getsinglekatturai/${id}`);
+        const response = await axios.get(`${url.config2}/api/katturai/getsinglekatturai/${id}`);
         setArticleData(response.data);
         // const viewedKey = `viewed_${id}`;
         // if (!localStorage.getItem(viewedKey)) {
@@ -1203,7 +1204,7 @@ const Katturai_Details = () => {
     const viewedKey = `viewed_${id}`; // Unique key per article
 
     if (!sessionStorage.getItem(viewedKey)) {
-      axios.put(`http://localhost:5000/api/katturai/${id}/view`)
+      axios.put(`${url.config2}/api/katturai/${id}/view`)
         .then(() => {
           sessionStorage.setItem(viewedKey, "true"); // Store viewed status
           hasViewedUpdated.current = true;
