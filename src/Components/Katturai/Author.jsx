@@ -198,7 +198,7 @@ function Author() {
         {/* Author Image Section */}
         <div className="relative group w-full h-40 overflow-hidden rounded-t-lg">
           <img
-            src={`http://localhost:5000${author.author_image}`}
+            src={`${url.config2}${author.author_image}`}
             alt={author.author_name}
             className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:brightness-75"
           />
